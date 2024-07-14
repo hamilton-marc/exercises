@@ -37,7 +37,7 @@ class BankOfAmericaParser:
 
     @input_file_path.setter
     def input_file_path(self, new_path):
-        self.file_path = new_path 
+        self.file_path = new_path
 
     @property
     def file_delimiter(self):
@@ -45,7 +45,7 @@ class BankOfAmericaParser:
 
     @file_delimiter.setter
     def file_delimiter(self, new_delimiter):
-        self.delimiter = new_delimiter 
+        self.delimiter = new_delimiter
 
     @property
     def discretionary_indicators(self):
@@ -63,8 +63,10 @@ class BankOfAmericaParser:
         Parses the input file into a dictionary.
         """
 
-        if file_path is not None:
-            self.file_path = file_path
+        if file_path is None:
+            raise TypeError("Missing file_apth parameter.")
+
+        self.file_path = file_path
 
         with open(self.file_path, 'r') as input_file:
             csv_reader = csv.DictReader(input_file, fieldnames=self.fields, delimiter=self.delimiter, quotechar='"')
@@ -98,9 +100,6 @@ class BankOfAmericaParser:
 
         return self.transactions
 
-    def add_discretionary_indicator(self, new_indicator):
-        self.discretionary_indicators.append(new_indicator)
-
     def find_discretionary_transactions(self):
         """
         Using the list of discretionary_transactions, we look for occurrences
@@ -112,7 +111,7 @@ class BankOfAmericaParser:
         print()
         print("Discretionary Spending")
         print("-----------------------")
-        
+
         total_discretionary_amount = 0
 
         # There's likely a more efficient, but less readable way to do this other than 2 for loops...
@@ -132,16 +131,17 @@ class BankOfAmericaParser:
         self.transactions = []
         self.delimiter = delimiter
 
-
 def main():
     if len(sys.argv) > 1:
         input_file = sys.argv[1]
+    else:
+        print("Required input_file parameter missing")
+        return
 
     parser = BankOfAmericaParser()
     parser.add_discretionary_indicator("ABC*EOS")
     parser.parse(input_file)
     parser.find_discretionary_transactions()
-
 
 if __name__ == "__main__":
     main()
