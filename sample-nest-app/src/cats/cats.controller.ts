@@ -1,5 +1,4 @@
-import { Controller, Get, Req } from '@nestjs/common';
-import { Request } from 'express';
+import { Controller, Get } from '@nestjs/common';
 
 interface Respondale {
   response: string;
@@ -8,7 +7,7 @@ interface Respondale {
 @Controller('cats')
 export class CatsController {
   @Get()
-  findAll(@Req() request: Request): Respondale[] {
+  findAll(): Respondale[] {
     const response: Respondale = {
       response: 'This action returns all cats',
     };
