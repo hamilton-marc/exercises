@@ -1,14 +1,14 @@
 import { Controller, Get } from '@nestjs/common';
 
-interface Respondale {
+interface Respondible {
   response: string;
 }
 
 @Controller('cats')
 export class CatsController {
   @Get()
-  findAll(): Respondale[] {
-    const response: Respondale = {
+  findAll(): Respondible[] {
+    const response: Respondible = {
       response: 'This action returns all cats',
     };
 
