@@ -1,0 +1,21 @@
+{
+  "name": "jev-hello-world",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Explore Jev's Choice, Score, and Noul decisions through OpenRouter.",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "start": "node src/main.ts",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@typesafe-ai/sdk": "0.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.9.0"
+  }
+}
